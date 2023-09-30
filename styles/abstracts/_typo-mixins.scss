@@ -1,0 +1,226 @@
+@use "variables" as v;
+
+@mixin heading-1($weight: 500) {
+  font-family: "Inter", sans-serif;
+  font-size: 72px;
+  font-style: normal;
+  font-weight: $weight;
+  line-height: 80px;
+}
+
+@mixin heading-2($weight: 500) {
+  font-family: "Inter", sans-serif;
+  font-size: 56px;
+  font-style: normal;
+  font-weight: $weight;
+  line-height: 64px;
+}
+
+@mixin heading-3($weight: 400) {
+  font-family: "Inter", sans-serif;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: $weight;
+  line-height: 60px;
+}
+
+@mixin heading-4($weight: 400) {
+  font-family: "Inter", sans-serif;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: $weight;
+  line-height: 44px;
+}
+
+@mixin heading-5($weight: 400) {
+  font-family: "Inter", sans-serif;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: $weight;
+  line-height: 38px;
+}
+
+@mixin heading-6($weight: 400) {
+  font-family: "Inter", sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: $weight;
+  line-height: 32px;
+}
+
+@mixin body-xs($weight: 400) {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: $weight;
+  line-height: 18px;
+}
+
+@mixin body-sm($weight: 400) {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: $weight;
+  line-height: 24px;
+}
+
+@mixin body-md($weight: 400) {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: $weight;
+  line-height: 24px;
+}
+
+@mixin body-lg($weight: 400) {
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: $weight;
+  line-height: 28px;
+}
+
+@mixin body-xl($weight: 400) {
+  font-family: "Inter", sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: $weight;
+  line-height: 30px;
+}
+
+@mixin mobile-display-lg($weight: 400) {
+  font-family: "Inter", sans-serif;
+  font-size: 57px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 112.281%;
+}
+
+@mixin mobile-display-md($weight: 400) {
+  font-family: "Inter", sans-serif;
+  font-size: 45px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 115.556%;
+}
+
+@mixin mobile-display-sm($weight: 400) {
+  font-family: "Inter", sans-serif;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 122.222%;
+}
+
+@mixin mobile-headline-lg($weight: 400) {
+  font-family: "Inter", sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 125%;
+}
+
+@mixin mobile-headline-md($weight: 400) {
+  font-family: "Inter", sans-serif;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 128.571%;
+}
+
+@mixin mobile-headline-sm($weight: 400) {
+  font-family: "Inter", sans-serif;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 128.571%;
+}
+
+@mixin mobile-title-lg($weight: 400) {
+  font-family: "Inter", sans-serif;
+  line-height: 133.333%;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 127.273%;
+}
+
+@mixin mobile-title-md($weight: 400) {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 127.273%;
+}
+
+@mixin mobile-title-sm($weight: 400) {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: 0.15px;
+}
+
+@mixin mobile-label-lg($weight: 400) {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 142.857%;
+  letter-spacing: 0.1px;
+}
+
+@mixin mobile-label-md($weight: 400) {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 133.333%;
+  letter-spacing: 0.5px;
+}
+
+@mixin mobile-label-sm($weight: 400) {
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 145.455%;
+  letter-spacing: 0.5px;
+}
+
+@mixin mobile-body-lg($weight: 400) {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: 0.5px;
+}
+
+@mixin mobile-body-md($weight: 400) {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 142.857%;
+  letter-spacing: 0.25px;
+}
+
+@mixin mobile-body-sm($weight: 400) {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 133.333%;
+  letter-spacing: 0.4px;
+}
+
+@mixin mobile-body-lgmd($weight: 400) {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: 0.5px;
+}

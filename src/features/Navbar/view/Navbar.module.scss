@@ -1,0 +1,11 @@
+@use "styles/abstracts/variables" as v;
+
+._Wrapper {
+  display: flex;
+  flex-direction: column;
+
+  box-shadow: 0 0 20px #57575740;
+
+  position: sticky;
+  top: 0;
+}

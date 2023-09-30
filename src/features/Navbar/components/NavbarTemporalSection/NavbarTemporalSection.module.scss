@@ -1,0 +1,39 @@
+@use "styles/abstracts/variables" as v;
+
+._Wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  padding: 16px 20px;
+
+  position: relative;
+
+  z-index: 1;
+
+  color: v.$white;
+
+  &::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    z-index: -1;
+
+    content: "";
+
+    width: 100dvw;
+    height: 100%;
+
+    margin-left: calc((100dvw - 100%) / -2);
+    background-color: v.$gray-4;
+  }
+
+  span {
+    position: absolute;
+    right: 0;
+
+    cursor: pointer;
+  }
+}

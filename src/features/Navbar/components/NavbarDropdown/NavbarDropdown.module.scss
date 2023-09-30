@@ -1,0 +1,99 @@
+@use "styles/abstracts/variables" as v;
+
+._Wrapper {
+  position: relative;
+
+  overflow: hidden;
+
+  align-self: stretch;
+
+  display: flex;
+  align-items: center;
+
+  z-index: 100;
+
+  // display menu on clicked
+  &._DropdownOpened {
+    overflow: unset;
+
+    ._DropdownMenuCategoryWrapper {
+      opacity: 1;
+
+      height: fit-content;
+    }
+
+    ._Overlay {
+      opacity: 1;
+
+      width: 100dvw;
+    }
+  }
+
+  ._DropdownBtn {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    gap: 9.5px;
+
+    cursor: pointer;
+
+    transform: translateY(3px);
+  }
+
+  ._DropdownMenuCategoryWrapper {
+    background-color: v.$white;
+    padding: 30px 32px;
+
+    box-shadow: 0 8px 24px #5757573f;
+
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    transform: translateY(calc(100% + 23px));
+
+    transition: opacity 0.3s;
+
+    opacity: 0;
+
+    height: 0;
+
+    z-index: 1;
+
+    &::before {
+      content: "";
+
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 32px;
+
+      transform: translateY(-100%);
+    }
+
+    ._DropdownMenu {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+  }
+
+  ._Overlay {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    width: 0;
+
+    background-color: #5757573f;
+
+    transition: opacity 0.3s;
+    transition-delay: 0.1s;
+
+    opacity: 0;
+
+    cursor: pointer;
+  }
+}
