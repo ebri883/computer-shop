@@ -2,43 +2,45 @@
 @use "styles/abstracts/mixins" as m;
 
 ._Wrapper {
-  padding-block: 20.5px 23px;
+  > div {
+    padding-block: 20.5px 23px;
 
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 36px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 36px;
 
-  ._InputSearchWrapper {
-    border: 1px solid #57575782;
-    background-color: v.$white;
+    ._InputSearchWrapper {
+      border: 1px solid #57575782;
+      background-color: v.$white;
 
-    position: relative;
+      position: relative;
 
-    margin-left: auto;
+      margin-left: auto;
 
-    width: 330px;
+      width: 330px;
 
-    input {
-      padding: 10px 12px;
-      padding-right: 32px;
+      input {
+        padding: 10px 12px;
+        padding-right: 32px;
 
-      border: none;
-      outline: none;
+        border: none;
+        outline: none;
 
-      @include m.placeholder(color, #57575771);
+        @include m.placeholder(color, #57575771);
 
-      color: v.$gray-3;
-    }
+        color: v.$gray-3;
+      }
 
-    span {
-      position: absolute;
-      top: 50%;
-      right: 12px;
+      span {
+        position: absolute;
+        top: 50%;
+        right: 12px;
 
-      transform: translateY(-50%);
+        transform: translateY(-50%);
 
-      cursor: pointer;
+        cursor: pointer;
+      }
     }
   }
 }

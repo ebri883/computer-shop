@@ -41,6 +41,10 @@
   }
 
   ._DropdownMenuCategoryWrapper {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(100px, 200px));
+    gap: 32px;
+
     background-color: v.$white;
     padding: 30px 32px;
 

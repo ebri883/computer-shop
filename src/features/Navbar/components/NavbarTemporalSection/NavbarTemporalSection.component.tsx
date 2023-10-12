@@ -19,12 +19,14 @@ const NavbarTemporalSection = ({
 
   return (
     <div className={clsx(s._Wrapper, "navbar-temporal-section")}>
-      <Typography fontWeight={500}>{children}</Typography>
-      <Icon
-        iconName="IcAwesomeTimes"
-        size={12}
-        onClick={handleonClickNavbarTemporalSectionIc}
-      />
+      <div className={"container"}>
+        <Typography fontWeight={500}>{children}</Typography>
+        <Icon
+          iconName="IcAwesomeTimes"
+          size={12}
+          onClick={handleonClickNavbarTemporalSectionIc}
+        />
+      </div>
     </div>
   );
 };

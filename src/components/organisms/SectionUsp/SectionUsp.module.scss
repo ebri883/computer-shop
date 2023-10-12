@@ -1,0 +1,7 @@
+._Wrapper {
+  > div {
+    display: grid;
+    grid-template-columns: repeat(4, calc(100% / 4 - 30px * 3 / 4));
+    gap: 30px;
+  }
+}

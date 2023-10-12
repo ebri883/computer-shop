@@ -37,9 +37,9 @@
 
 @mixin container() {
   max-width: 1410px;
-  width: 100%;
+  width: calc(100% - 40px);
   margin-inline: auto;
-  padding-inline: 20px;
+  // padding-inline: 20px;
 }
 
 @mixin fake-container($property) {
@@ -107,4 +107,43 @@
   $col_: math.div($col, 12);
   $percentage: math.percentage(math.div($col_ * 100, 100));
   flex: 0 0 $percentage;
+}
+
+@mixin button-1 {
+  padding: 14px 32px;
+  background-color: v.$red-1;
+  color: v.$white;
+
+  width: fit-content;
+
+  transition: 0.3s;
+
+  border: none;
+  outline: none;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: v.$red-2;
+  }
+}
+
+@mixin button-secondary {
+  padding: 14px 32px;
+  background-color: v.$white;
+  color: v.$red-2;
+
+  width: fit-content;
+
+  transition: 0.3s;
+
+  border: 1px solid v.$red-1;
+  outline: none;
+
+  cursor: pointer;
+
+  &:hover {
+    color: v.$white;
+    background-color: v.$red-1;
+  }
 }

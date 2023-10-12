@@ -1,0 +1,12 @@
+@use "styles/abstracts/mixins" as m;
+@use "styles/abstracts/typo-mixins" as t;
+
+.button-1 {
+  @include m.button-1;
+  @include t.body-md;
+}
+
+.button-secondary {
+  @include m.button-secondary;
+  @include t.body-md;
+}

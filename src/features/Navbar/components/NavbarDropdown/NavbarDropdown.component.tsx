@@ -1,9 +1,12 @@
 import clsx from "clsx";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import s from "./NavbarDropdown.module.scss";
 import { Icon } from "@/components/atoms/Icon";
 import { Typography } from "@/components/atoms/Typography";
 import Link from "next/link";
+import { produkKategoriData } from "@/data/produkKategori.data";
+import { PATHS } from "@/constants/PATHS";
+import { useRouter } from "next/router";
 
 interface INavbarDropdownProps {
   onClickDropdownTriggers: (dropdownOpenStatus: boolean) => void;
@@ -11,11 +14,27 @@ interface INavbarDropdownProps {
   navbarHeight: number;
 }
 
+const arrDropdownCategoryGroup = [
+  {
+    name: "Komputer",
+    arrChild: produkKategoriData.filter((item) =>
+      item.categoryParent?.includes("komputer")
+    ),
+  },
+  {
+    name: "Aksesoris",
+    arrChild: produkKategoriData.filter((item) =>
+      item.categoryParent?.includes("aksesoris")
+    ),
+  },
+];
+
 const NavbarDropdown = ({
   onClickDropdownTriggers,
   isDropdownOpen,
   navbarHeight,
 }: INavbarDropdownProps) => {
+  const { query, pathname } = useRouter();
   const handleToggleDropdown = () => {
     onClickDropdownTriggers(!isDropdownOpen);
   };
@@ -23,6 +42,18 @@ const NavbarDropdown = ({
   const handleCloseDropdown = () => {
     onClickDropdownTriggers(false);
   };
+
+  useEffect(() => {
+    if (pathname !== PATHS.search) {
+      delete query?.s;
+      delete query?.pageOverview;
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+    delete query.s;
+    delete query.pageOverview;
+  }, [query.cat, query.brand]);
 
   return (
     <div className={clsx(s._Wrapper, isDropdownOpen && s._DropdownOpened)}>
@@ -40,14 +71,35 @@ const NavbarDropdown = ({
         </Typography>
       </div>
       <div className={clsx(s._DropdownMenuCategoryWrapper)}>
-        <div className={clsx(s._DropdownMenu)}>
-          <Typography fontWeight={700} className={(s._CategoryName, "gray-3")}>
-            Komputer
-          </Typography>
-          <Link href={"/produk?cat=laptop"} onClick={handleCloseDropdown}>
-            <Typography className="gray-3">Laptop</Typography>
-          </Link>
-        </div>
+        {arrDropdownCategoryGroup &&
+          arrDropdownCategoryGroup.map((group, key) => (
+            <div key={key} className={clsx(s._DropdownMenu)}>
+              <Typography
+                fontWeight={700}
+                className={(s._CategoryName, "gray-3")}
+              >
+                {group.name}
+              </Typography>
+              {group.arrChild &&
+                group.arrChild?.map((child, key) => (
+                  <Link
+                    key={key}
+                    href={{
+                      pathname: PATHS.produk,
+                      query: {
+                        ...query,
+                        cat: child.categorySlug,
+                      },
+                    }}
+                    onClick={handleCloseDropdown}
+                  >
+                    <Typography className="gray-3">
+                      {child.categoryName}
+                    </Typography>
+                  </Link>
+                ))}
+            </div>
+          ))}
       </div>
       <div
         className={s._Overlay}

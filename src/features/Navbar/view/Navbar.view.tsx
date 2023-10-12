@@ -22,26 +22,22 @@ const Navbar = () => {
 
   return (
     <div className={clsx(s._Wrapper)} ref={navbarRef}>
-      <div className="container">
-        <NavbarInfo />
-        <NavbarMain
-          onClickDropdownTriggers={(dropdwonOpenStatus) =>
-            setIsDropdownOpen(dropdwonOpenStatus)
-          }
-          onKeyDownInputSearch={(e) => handleOnKeyDownInputSearch(e)}
-          isDropdownOpen={isDropdownOpen}
-          navbarHeight={navbarPassedHeight}
-        />
-        {!isTemporalSectionClosed && (
-          <NavbarTemporalSection
-            onClickNavbarTemporalSectionIc={
-              handleOnClickNavbarTemporalSectionIc
-            }
-          >
-            Dapatkan diskon ongkir untuk pembelian minimal Rp 500.000
-          </NavbarTemporalSection>
-        )}
-      </div>
+      <NavbarInfo />
+      <NavbarMain
+        onClickDropdownTriggers={(dropdwonOpenStatus) =>
+          setIsDropdownOpen(dropdwonOpenStatus)
+        }
+        onKeyDownInputSearch={(e) => handleOnKeyDownInputSearch(e)}
+        isDropdownOpen={isDropdownOpen}
+        navbarHeight={navbarPassedHeight}
+      />
+      {!isTemporalSectionClosed && (
+        <NavbarTemporalSection
+          onClickNavbarTemporalSectionIc={handleOnClickNavbarTemporalSectionIc}
+        >
+          Dapatkan diskon ongkir untuk pembelian minimal Rp 500.000
+        </NavbarTemporalSection>
+      )}
     </div>
   );
 };

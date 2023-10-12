@@ -1,7 +1,7 @@
 import { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import "../styles/globals.scss";
-import Navbar from "@/features/Navbar/view/Navbar.component";
+import Navbar from "@/features/Navbar/view/Navbar.view";
 import Footer from "@/features/Footer";
 
 const App = ({ Component, pageProps }: AppProps) => {

@@ -1,0 +1,30 @@
+._Wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 96px;
+
+  padding-bottom: 96px;
+
+  > div:first-child {
+    margin-bottom: -96px;
+  }
+
+  ._ProductOverviewWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+
+    position: relative;
+
+    ._Filter {
+      position: sticky;
+      top: 220px;
+
+      max-width: 210px;
+    }
+
+    ._Overview {
+      width: calc(100% - 210px - 30px);
+    }
+  }
+}

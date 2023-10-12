@@ -1,9 +1,11 @@
-const Home = () => {
-  return (
-    <div>
-      <h1 className="h1">Home</h1>
-    </div>
-  );
+import dynamic from "next/dynamic";
+
+const HomepageView = dynamic(() => import("@/features/Homepage/view"), {
+  ssr: false,
+});
+
+const Homepage = () => {
+  return <HomepageView />;
 };
 
-export default Home;
+export default Homepage;

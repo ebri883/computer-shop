@@ -1,0 +1,11 @@
+._Wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 96px;
+
+  padding-bottom: 96px;
+
+  > div:first-child {
+    margin-bottom: -96px;
+  }
+}

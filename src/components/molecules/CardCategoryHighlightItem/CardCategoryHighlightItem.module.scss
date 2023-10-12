@@ -1,0 +1,29 @@
+@use "/styles/abstracts/variables" as v;
+
+._Wrapper {
+  a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+
+    img {
+      width: 80%;
+      height: unset;
+      aspect-ratio: 1;
+
+      object-fit: contain;
+      object-position: center;
+    }
+
+    ._CategoryName {
+      width: 100%;
+
+      padding-top: 13px;
+
+      border-top: 1px solid v.$gray-3;
+    }
+  }
+}

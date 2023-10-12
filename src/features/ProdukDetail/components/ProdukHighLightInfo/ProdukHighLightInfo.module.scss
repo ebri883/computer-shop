@@ -1,0 +1,87 @@
+@use "/styles//abstracts/typo-mixins" as t;
+@use "/styles//abstracts/variables" as v;
+
+._Wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+
+  ._Container {
+    &:not(:first-child) {
+      border-top: 1px solid rgba(v.$gray-3, 0.25);
+
+      padding-top: 28px;
+    }
+
+    &._Price {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      ._PriceWrapper {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+      }
+    }
+
+    &._Quantity {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      ._InputWrapper {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        button,
+        input {
+          @include t.body-md;
+
+          padding: 8px 12px;
+
+          outline: none;
+          border: 1px solid #57575774;
+
+          min-width: 42px;
+        }
+
+        button {
+          cursor: pointer;
+        }
+
+        input {
+          appearance: none;
+
+          text-align: center;
+
+          width: 102px;
+
+          &[type="number"] {
+            -moz-appearance: textfield;
+            appearance: textfield;
+
+            -webkit-appearance: none;
+            margin: 0;
+
+            &::-webkit-inner-spin-button,
+            &::-webkit-outer-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+
+    &._Buttons {
+      display: flex;
+      gap: 32px;
+
+      button {
+        padding-block: 12px;
+      }
+    }
+  }
+}

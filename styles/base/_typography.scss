@@ -1,143 +1,46 @@
 @use "../abstracts/typo-mixins";
-@use "styles/abstracts/variables"as v;
-
+@use "styles/abstracts/variables" as v;
 
 .h1 {
-    @include typo-mixins.heading-1;
+  @include typo-mixins.heading-1;
 }
 
 .h2 {
-    @include typo-mixins.heading-2;
+  @include typo-mixins.heading-2;
 }
 
 .h3 {
-    @include typo-mixins.heading-3;
+  @include typo-mixins.heading-3;
 }
 
 .h4 {
-    @include typo-mixins.heading-4;
+  @include typo-mixins.heading-4;
 }
 
 .h5 {
-    @include typo-mixins.heading-5;
+  @include typo-mixins.heading-5;
 }
 
 .h6 {
-    @include typo-mixins.heading-6;
+  @include typo-mixins.heading-6;
 }
 
 .body-xs {
-    @include typo-mixins.body-xs;
+  @include typo-mixins.body-xs;
 }
 
 .body-sm {
-    @include typo-mixins.body-sm;
+  @include typo-mixins.body-sm;
 }
 
 .body-md {
-    @include typo-mixins.body-md;
+  @include typo-mixins.body-md;
 }
 
 .body-lg {
-    @include typo-mixins.body-lg;
+  @include typo-mixins.body-lg;
 }
 
 .body-xl {
-    @include typo-mixins.body-xl;
-}
-
-@media (max-width: v.$mobile-down) {
-    .mobile {
-        &-display-lg {
-            @include typo-mixins.mobile-display-lg;
-        }
-
-        &-display-md {
-            @include typo-mixins.mobile-display-md;
-        }
-
-        &-display-sm {
-            @include typo-mixins.mobile-display-sm;
-        }
-
-        &-headline-lg {
-            @include typo-mixins.mobile-headline-lg;
-        }
-
-        &-headline-md {
-            @include typo-mixins.mobile-headline-md;
-        }
-
-        &-headline-sm {
-            @include typo-mixins.mobile-headline-sm;
-        }
-
-        &-title-lg {
-            @include typo-mixins.mobile-title-lg;
-        }
-
-        &-title-md {
-            @include typo-mixins.mobile-title-md;
-        }
-
-        &-title-sm {
-            @include typo-mixins.mobile-title-sm;
-        }
-
-        &-label-lg {
-            @include typo-mixins.mobile-label-lg;
-        }
-
-        &-label-md {
-            @include typo-mixins.mobile-label-md;
-        }
-
-        &-label-sm {
-            @include typo-mixins.mobile-label-sm;
-        }
-
-        &-body-lg {
-            @include typo-mixins.mobile-body-lg;
-        }
-
-        &-body-md {
-            @include typo-mixins.mobile-body-md;
-        }
-
-        &-body-sm {
-            @include typo-mixins.mobile-body-sm;
-        }
-
-        &-body-lgmd {
-            @include typo-mixins.mobile-body-lgmd;
-        }
-    }
-}
-
-.wysiwyg {
-    >* {
-        margin-bottom: 16px
-    }
-
-    h1 {
-        @include typo-mixins.heading-3;
-    }
-
-    h2 {
-        @include typo-mixins.heading-5(500);
-    }
-
-    h3,
-    h4,
-    h5,
-    h6 {
-        @include typo-mixins.heading-6(500);
-    }
-
-    p,
-    span,
-    li,
-    a {
-        @include typo-mixins.body-md(400);
-    }
+  @include typo-mixins.body-xl;
 }

@@ -1,0 +1,48 @@
+@use "/styles/abstracts/variables" as v;
+@use "/styles/abstracts/mixins" as m;
+
+._Wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px 30px;
+
+  p {
+    white-space: nowrap;
+  }
+
+  ._SelectWrapper {
+    position: relative;
+
+    select {
+      appearance: none;
+
+      padding: 10px 12px;
+      padding-right: 32px;
+
+      border: 1px solid #57575776;
+      outline: none;
+
+      @include m.placeholder(color, #57575771);
+
+      color: v.$gray-3;
+
+      width: 100%;
+      min-width: 166px;
+    }
+
+    select:focus ~ svg {
+      transform: translateY(-50%) rotateX(180deg);
+    }
+
+    svg {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+
+      transform: translateY(-50%);
+
+      transition: 0.3s;
+    }
+  }
+}

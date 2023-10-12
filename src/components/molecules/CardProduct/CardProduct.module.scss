@@ -1,0 +1,45 @@
+@use "/styles/abstracts/variables" as v;
+
+._Wrapper {
+  border-radius: 8px;
+
+  box-shadow: 0 8px 24px #5757573d;
+
+  overflow: hidden;
+
+  a {
+    display: flex;
+    flex-direction: column;
+
+    padding: 16px;
+    padding-bottom: 32px;
+
+    background-color: v.$white;
+
+    height: 100%;
+
+    img {
+      width: 100%;
+
+      object-fit: contain;
+
+      border-radius: 6px;
+
+      margin-bottom: 16px;
+    }
+
+    ._ProductName {
+      margin-bottom: 12px;
+
+      text-align: center;
+    }
+
+    ._ProductPrice {
+      text-align: center;
+
+      &._ProductSalePrice {
+        margin-bottom: 6px;
+      }
+    }
+  }
+}

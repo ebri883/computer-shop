@@ -1,0 +1,32 @@
+._Wrapper {
+  position: relative;
+
+  ._SliderContainer {
+    display: flex;
+  }
+
+  ._SwiperArrow {
+    position: absolute;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    z-index: 2;
+
+    background-color: transparent !important;
+    outline: none;
+    border: none;
+
+    cursor: pointer;
+
+    color: white;
+
+    &._Prev {
+      left: calc((100% - 1410px) / 2);
+    }
+
+    &._Next {
+      right: calc((100% - 1410px) / 2);
+    }
+  }
+}

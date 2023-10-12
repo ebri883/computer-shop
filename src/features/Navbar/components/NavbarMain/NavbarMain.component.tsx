@@ -24,27 +24,29 @@ const NavbarMain = ({
   };
   return (
     <div className={s._Wrapper}>
-      <Link href={PATHS.homepage}>
-        <Icon iconName="IcSiteLogo" width={226} height={47} />
-      </Link>
-      <NavbarDropdown
-        onClickDropdownTriggers={(dropdownOpenStatus) =>
-          onClickDropdownTriggers(dropdownOpenStatus)
-        }
-        isDropdownOpen={isDropdownOpen}
-        navbarHeight={navbarHeight}
-      />
-      <div className={clsx(s._InputSearchWrapper)}>
-        <input
-          type="text"
-          id="navSearch"
-          className={clsx(s._InputSearch, "body-sm")}
-          placeholder="Cari produk di komputech"
-          onKeyDown={(e) => handleOnKeyDownInput(e)}
+      <div className="container">
+        <Link href={PATHS.homepage}>
+          <Icon iconName="IcSiteLogo" width={226} height={47} />
+        </Link>
+        <NavbarDropdown
+          onClickDropdownTriggers={(dropdownOpenStatus) =>
+            onClickDropdownTriggers(dropdownOpenStatus)
+          }
+          isDropdownOpen={isDropdownOpen}
+          navbarHeight={navbarHeight}
         />
-        <label htmlFor="navSearch">
-          <Icon iconName="IcFeatherSearch" size={14.235} />
-        </label>
+        <div className={clsx(s._InputSearchWrapper)}>
+          <input
+            type="text"
+            id="navSearch"
+            className={clsx(s._InputSearch, "body-sm")}
+            placeholder="Cari produk di komputech"
+            onKeyDown={(e) => handleOnKeyDownInput(e)}
+          />
+          <label htmlFor="navSearch">
+            <Icon iconName="IcFeatherSearch" size={14.235} />
+          </label>
+        </div>
       </div>
     </div>
   );

@@ -1,0 +1,86 @@
+@use "/styles/abstracts/variables" as v;
+@use "/styles/abstracts/typo-mixins" as t;
+
+._Wrapper {
+  padding: 45px 48px;
+
+  background-color: v.$white;
+
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+
+  ._TabWrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 32px;
+
+    ._TabItem {
+      @include t.body-xl(500);
+      text-transform: uppercase;
+
+      color: v.$gray-4;
+
+      padding-right: 8px;
+      padding-bottom: 8px;
+
+      border-bottom: 1px solid transparent;
+
+      transition: 0.3s;
+
+      cursor: pointer;
+
+      &._Active {
+        border-color: rgba($color: v.$gray-3, $alpha: 0.5);
+      }
+    }
+  }
+
+  ._ContentWrapper {
+    display: flex;
+    align-items: center;
+
+    &._IsSpec {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+
+      ._WrapperSpecItem {
+        display: flex;
+        flex-direction: row;
+        gap: 1px;
+
+        width: 100%;
+
+        &:nth-child(even) {
+          > div {
+            background-color: rgba(v.$gray-1, 0.5);
+          }
+        }
+
+        > div {
+          align-self: stretch;
+
+          padding: 12px 24px;
+
+          background-color: v.$gray-1;
+
+          @include t.body-md;
+        }
+
+        ._Name {
+          align-self: stretch;
+
+          font-weight: 700;
+
+          width: 200px;
+        }
+
+        ._Detail {
+          width: calc(100% - 200px);
+        }
+      }
+    }
+  }
+}

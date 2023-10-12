@@ -1,0 +1,21 @@
+._Wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 96px;
+
+  padding-bottom: 96px;
+
+  > div:first-child {
+    margin-bottom: -96px;
+  }
+
+  ._ProdukHighLightInfoWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+
+    ._ProductHighlightInfo {
+      flex: 1;
+    }
+  }
+}

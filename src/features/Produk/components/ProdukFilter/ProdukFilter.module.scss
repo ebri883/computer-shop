@@ -1,0 +1,66 @@
+@use "/styles/abstracts/variables" as v;
+@use "/styles/abstracts/mixins" as m;
+
+._Wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  padding: 22px 16px;
+
+  background-color: white;
+
+  height: fit-content;
+
+  button {
+    width: 100%;
+
+    padding-block: 6px;
+  }
+
+  ._GroupWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    p {
+      text-transform: uppercase;
+    }
+
+    a {
+      transition: 0.3s;
+    }
+  }
+
+  ._PriceWrapper {
+    padding-top: 32px;
+
+    border-top: 1px solid #5757577d;
+
+    p {
+      margin-bottom: 8px;
+
+      text-transform: uppercase;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      input {
+        padding: 8px 12px;
+        padding-right: 32px;
+
+        border: 1px solid #57575776;
+        outline: none;
+
+        @include m.placeholder(color, #57575771);
+
+        color: v.$gray-3;
+
+        width: 100%;
+      }
+    }
+  }
+}
