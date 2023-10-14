@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import s from "./Cart.module.scss";
 import clsx from "clsx";
 import CartItem from "../components/CartItem";
 import CartCardTotal from "../components/CartCardTotal/CartCardTotal.component";
 import { Typography } from "@/components/atoms/Typography";
-import { produkData } from "@/data/produk.data";
+import { useAppSelector } from "@/hooks/useAppSelector.hook";
 
 const Cart = () => {
+  const { userData } = useAppSelector((state) => state.user);
+
+  const arrCartProduct = useMemo(() => {
+    return [...userData.userCartData.userCartProduct];
+  }, [userData]);
+
+  const cartTotalPrice = userData.userCartData?.userCartTotal;
+
   return (
     <div className={clsx(s._Wrapper)}>
       <div className="container">
@@ -20,17 +28,19 @@ const Cart = () => {
         </Typography>
         <div className={clsx(s._CartContent)}>
           <div className={clsx(s._ItemList)}>
-            {produkData?.map((item, key) => (
+            {arrCartProduct?.map((item, key) => (
               <CartItem
-                key={key}
+                key={item.productSlug}
                 productName={item.productName}
                 productPicture={item.productPicture}
                 productPrice={item.productPrice}
                 productSalePercent={item.productSalePercent}
+                productSlug={item.productSlug}
+                produkQuantity={item.produkQuantity}
               />
             ))}
           </div>
-          <CartCardTotal />
+          <CartCardTotal cartTotal={cartTotalPrice} />
         </div>
       </div>
     </div>

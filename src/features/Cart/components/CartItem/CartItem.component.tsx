@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import s from "./CartItem.module.scss";
 import clsx from "clsx";
 import Image from "next/image";
@@ -7,11 +7,23 @@ import { Typography } from "@/components/atoms/Typography";
 import { Icon } from "@/components/atoms/Icon";
 import useGetProductFinalPrice from "@/hooks/useGetProductFinalPrice.hook";
 import { IProduk } from "@/interfaces/produk.interface";
+import { IUserCartProduk } from "@/interfaces/user.interface";
+import Link from "next/link";
+import { PATHS } from "@/constants/PATHS";
+import { useAppDispatch } from "@/hooks/useAppDispatch.hook";
+import { mutateUserCartData } from "@/store/user/userSlice";
+import useUpdateCartQuantity from "@/hooks/useUpdateCartData.hook";
+import { useAppSelector } from "@/hooks/useAppSelector.hook";
 
 interface ICartItemProps
   extends Pick<
-    IProduk,
-    "productPrice" | "productSalePercent" | "productName" | "productPicture"
+    IUserCartProduk,
+    | "productPrice"
+    | "productSalePercent"
+    | "productName"
+    | "productPicture"
+    | "productSlug"
+    | "produkQuantity"
   > {}
 
 const CartItem = ({
@@ -19,8 +31,12 @@ const CartItem = ({
   productPicture,
   productPrice,
   productSalePercent,
+  productSlug,
+  produkQuantity,
 }: ICartItemProps) => {
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(produkQuantity || 1);
+  const { updateCartProductQuantity, removeProductFromCart } =
+    useUpdateCartQuantity();
 
   const { actualDisplayPrice, finalPrice, finalDisplayPrice, isSale } =
     useGetProductFinalPrice({
@@ -30,11 +46,19 @@ const CartItem = ({
 
   const handleIncrementQuantity = () => {
     setQuantity((prev) => prev + 1);
+    updateCartProductQuantity({
+      productSlug: productSlug,
+      produkQuantity: quantity + 1,
+    });
   };
 
   const handleDecrementQuantity = () => {
     if (quantity <= 1) return setQuantity(1);
     setQuantity((prev) => prev - 1);
+    updateCartProductQuantity({
+      productSlug: productSlug,
+      produkQuantity: quantity - 1,
+    });
   };
 
   const handleOnChangeInputQuantity = (e: ChangeEvent<HTMLInputElement>) => {
@@ -43,6 +67,14 @@ const CartItem = ({
       return setQuantity(1);
     }
     setQuantity(inputedValue);
+    updateCartProductQuantity({
+      productSlug: productSlug,
+      produkQuantity: inputedValue,
+    });
+  };
+
+  const handleOnClickDeleteItem = () => {
+    removeProductFromCart({ productSlug });
   };
 
   const displayedTotalPrice = (finalPrice * quantity)
@@ -53,17 +85,19 @@ const CartItem = ({
   return (
     <div className={clsx(s._Wrapper)}>
       <Image
-        src={imgTest}
+        src={productPicture}
         width={100}
         height={100}
-        alt="test"
+        alt={productSlug}
         loading="lazy"
         className={clsx(s._Image)}
       />
       <div className={clsx(s._ProdukInfo)}>
-        <Typography variant="body-md" className={clsx("gray-4")}>
-          {productName}
-        </Typography>
+        <Link href={`${PATHS.produk}/${productSlug}`}>
+          <Typography variant="body-md" className={clsx("gray-4")}>
+            {productName}
+          </Typography>
+        </Link>
         <Typography variant="body-md" className={clsx("gray-4")}>
           Rp {finalDisplayPrice}
         </Typography>
@@ -83,6 +117,7 @@ const CartItem = ({
             height={19}
             width={17}
             className={clsx("red-1")}
+            onClick={handleOnClickDeleteItem}
           />
           <button onClick={handleDecrementQuantity}>-</button>
           <input

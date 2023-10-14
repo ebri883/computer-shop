@@ -26,7 +26,8 @@
     flex-wrap: wrap;
     gap: 12px 30px;
 
-    p {
+    p,
+    a {
       &:first-child {
         width: 100%;
       }
@@ -67,7 +68,8 @@
         min-width: 42px;
       }
 
-      button {
+      button,
+      span {
         cursor: pointer;
       }
 

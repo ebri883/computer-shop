@@ -5,8 +5,17 @@ import clsx from "clsx";
 import Link from "next/link";
 import React from "react";
 import s from "./NavbarInfo.module.scss";
+import { useAppSelector } from "@/hooks/useAppSelector.hook";
+import useGetProductFinalPrice from "@/hooks/useGetProductFinalPrice.hook";
 
 const NavbarInfo = () => {
+  const { userData } = useAppSelector((state) => state.user);
+  const cartTotal = userData.userCartData.userCartTotal;
+  const { finalDisplayPrice } = useGetProductFinalPrice({
+    productPrice: cartTotal,
+    productSalePercent: 0,
+  });
+
   return (
     <div className={clsx(s._SectionInfo)}>
       <div className="container">
@@ -42,7 +51,7 @@ const NavbarInfo = () => {
               iconSize={19}
               className={clsx("gray-3")}
             >
-              <Typography variant="body-sm">Rp 250.000</Typography>
+              <Typography variant="body-sm">Rp {finalDisplayPrice}</Typography>
             </IconBox>
           </Link>
         </div>

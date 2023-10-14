@@ -1,0 +1,78 @@
+@use "/styles/abstracts/variables" as v;
+@use "/styles/abstracts/typo-mixins" as t;
+
+._Wrapper {
+  background-color: v.$white;
+
+  padding: 30px 32px;
+
+  height: fit-content;
+
+  box-shadow: 0 0 20px rgba($color: v.$gray-3, $alpha: 0.1);
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  ._OrderList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    ._OrderItem {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      img {
+        width: 100px;
+        aspect-ratio: 1;
+
+        object-fit: contain;
+
+        border: 1px solid rgba($color: v.$gray-4, $alpha: 0.5);
+      }
+
+      ._TextWrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  }
+
+  ._SubtotalWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    margin-top: 8px;
+    padding-block: 22px;
+
+    border-block: 1px solid rgba(v.$gray-4, 0.5);
+
+    ._SubtotalItem {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  ._TotalWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    margin-top: 8px;
+
+    ._TotalItem {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    button {
+      width: 100%;
+    }
+  }
+}

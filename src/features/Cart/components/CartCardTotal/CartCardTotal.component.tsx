@@ -2,12 +2,26 @@ import React from "react";
 import s from "./CartCardTotal.module.scss";
 import clsx from "clsx";
 import { Typography } from "@/components/atoms/Typography";
+import { useRouter } from "next/router";
+import { PATHS } from "@/constants/PATHS";
+import useGetProductFinalPrice from "@/hooks/useGetProductFinalPrice.hook";
 
 interface ICartCardTotalProps {
-  cartTotal?: number;
+  cartTotal: number;
 }
 
-const CartCardTotal = ({ cartTotal = 1000 }: ICartCardTotalProps) => {
+const CartCardTotal = ({ cartTotal }: ICartCardTotalProps) => {
+  const { finalDisplayPrice } = useGetProductFinalPrice({
+    productPrice: cartTotal,
+    productSalePercent: 0,
+  });
+
+  const { push } = useRouter();
+
+  const handleOnClickCheckout = () => {
+    push(PATHS.checkout, undefined, { shallow: true });
+  };
+
   return (
     <div className={clsx(s._Wrapper)}>
       <Typography variant="body-lg" className={clsx("gray-4")}>
@@ -18,9 +32,11 @@ const CartCardTotal = ({ cartTotal = 1000 }: ICartCardTotalProps) => {
         fontWeight={700}
         className={clsx("gray-4", s._TotalPrice)}
       >
-        Rp {cartTotal}
+        Rp {finalDisplayPrice}
       </Typography>
-      <button className="button-1">Lanjut ke checkout</button>
+      <button className="button-1" onClick={handleOnClickCheckout}>
+        Lanjut ke checkout
+      </button>
     </div>
   );
 };

@@ -5,9 +5,13 @@ import { IProduk } from "@/interfaces/produk.interface";
 import { Typography } from "@/components/atoms/Typography";
 import useGetProductFinalPrice from "@/hooks/useGetProductFinalPrice.hook";
 import SalePrice from "@/components/molecules/SalePrice";
+import useUpdateCartData from "@/hooks/useUpdateCartData.hook";
 
 export interface IProdukHighLightInfoProps
-  extends Pick<IProduk, "productName" | "productPrice" | "productSalePercent"> {
+  extends Pick<
+    IProduk,
+    "productName" | "productPrice" | "productSalePercent" | "productSlug"
+  > {
   className?: string;
 }
 
@@ -15,9 +19,11 @@ const ProdukHighLightInfo = ({
   productName,
   productPrice,
   productSalePercent,
+  productSlug,
   className,
 }: IProdukHighLightInfoProps) => {
   const [quantity, setQuantity] = useState(1);
+  const { addProductToCart } = useUpdateCartData();
 
   const { actualDisplayPrice, finalPrice, finalDisplayPrice, isSale } =
     useGetProductFinalPrice({
@@ -40,6 +46,10 @@ const ProdukHighLightInfo = ({
       return setQuantity(1);
     }
     setQuantity(inputedValue);
+  };
+
+  const handleOnClickAddToCart = () => {
+    addProductToCart({ productSlug, produkQuantity: quantity });
   };
 
   const displayedTotalPrice = (finalPrice * quantity)
@@ -107,7 +117,9 @@ const ProdukHighLightInfo = ({
         </div>
       </div>
       <div className={clsx(s._Container, s._Buttons)}>
-        <button className="button-1">Tambah ke keranjang</button>
+        <button className="button-1" onClick={handleOnClickAddToCart}>
+          Tambah ke keranjang
+        </button>
         <button className="button-secondary">Beli sekarang</button>
       </div>
     </div>

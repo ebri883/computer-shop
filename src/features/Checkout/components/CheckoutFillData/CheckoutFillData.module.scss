@@ -1,0 +1,110 @@
+@use "/styles/abstracts//variables" as v;
+@use "/styles/abstracts//typo-mixins" as t;
+
+._Wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  ._CardAddress {
+    padding: 30px 32px;
+
+    background-color: v.$white;
+
+    ._Title {
+      margin-bottom: 14px;
+    }
+
+    ._Name {
+      margin-bottom: 8px;
+    }
+
+    ._Address {
+      margin-bottom: 22px;
+    }
+
+    ._ButtonEdit {
+      @include t.body-md;
+      color: v.$gray-4;
+      background-color: v.$gray-1;
+
+      outline: none;
+      border: none;
+
+      padding: 8px 16px;
+
+      cursor: pointer;
+
+      transition: 0.3s;
+
+      &:hover {
+        background-color: v.$gray-2;
+      }
+    }
+  }
+
+  ._CardShippingMethod {
+    padding: 30px 32px;
+
+    background-color: v.$white;
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    ._ShippingList {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+
+      ._ShippingItem {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        position: relative;
+
+        input {
+          margin: 0;
+
+          width: 18px;
+          height: 18px;
+
+          appearance: none;
+
+          position: absolute;
+
+          z-index: 1;
+
+          cursor: pointer;
+        }
+
+        ._RadioChecked,
+        ._RadioUnchecked {
+          display: flex;
+
+          transition: 0.3s;
+
+          ._Dot {
+            fill: v.$red-2;
+          }
+        }
+
+        ._RadioChecked {
+          opacity: 0;
+
+          position: absolute;
+          left: 0;
+        }
+
+        input:checked ~ ._RadioChecked {
+          opacity: 1;
+        }
+
+        label {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

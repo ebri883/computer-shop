@@ -60,9 +60,11 @@ const ProdukDetail = () => {
         <ProdukDetailPicture
           productPicture={currentProductData?.productPicture || ""}
           productGallery={currentProductData?.productGallery || []}
+          productSlug={currentProductData?.productSlug || ""}
         />
         <ProdukHighLightInfo
           className={s._ProductHighlightInfo}
+          productSlug={currentProductData?.productSlug || ""}
           productName={currentProductData?.productName || ""}
           productPrice={currentProductData?.productPrice || 0}
           productSalePercent={currentProductData?.productSalePercent || 0}
