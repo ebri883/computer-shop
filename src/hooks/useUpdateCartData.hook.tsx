@@ -127,8 +127,15 @@ const useUpdateCartData = () => {
   const updateTotalCartPrice = (arrUserCartProduct: IUserCartProduk[]) => {
     let totalCartPrice = 0;
     arrUserCartProduct.map((cartProductItem) => {
-      return (totalCartPrice +=
-        cartProductItem.productPrice * cartProductItem.produkQuantity);
+      if (cartProductItem.productSalePercent) {
+        return (totalCartPrice +=
+          (cartProductItem.productPrice -
+            cartProductItem.productPrice / cartProductItem.productSalePercent) *
+          cartProductItem.produkQuantity);
+      } else {
+        return (totalCartPrice +=
+          cartProductItem.productPrice * cartProductItem.produkQuantity);
+      }
     });
 
     return totalCartPrice;

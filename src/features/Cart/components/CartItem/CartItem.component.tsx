@@ -14,6 +14,7 @@ import { useAppDispatch } from "@/hooks/useAppDispatch.hook";
 import { mutateUserCartData } from "@/store/user/userSlice";
 import useUpdateCartQuantity from "@/hooks/useUpdateCartData.hook";
 import { useAppSelector } from "@/hooks/useAppSelector.hook";
+import PopupContainer from "@/components/molecules/PopupContainer";
 
 interface ICartItemProps
   extends Pick<
@@ -34,6 +35,7 @@ const CartItem = ({
   productSlug,
   produkQuantity,
 }: ICartItemProps) => {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [quantity, setQuantity] = useState(produkQuantity || 1);
   const { updateCartProductQuantity, removeProductFromCart } =
     useUpdateCartQuantity();
@@ -75,12 +77,59 @@ const CartItem = ({
 
   const handleOnClickDeleteItem = () => {
     removeProductFromCart({ productSlug });
+    setIsPopupOpen(false);
   };
 
   const displayedTotalPrice = (finalPrice * quantity)
     .toLocaleString()
     .split(".")[0]
     .replaceAll(",", ".");
+
+  const popupHead = () => {
+    return (
+      <div className={clsx(s._PopupHead)}>
+        <Typography
+          variant="body-xl"
+          fontWeight={700}
+          className={clsx("gray-4")}
+        >
+          Hapus produk
+        </Typography>
+        <Icon
+          iconName="IcIonicIosClose"
+          size={14}
+          onClick={() => setIsPopupOpen(false)}
+          className={s._Close}
+        />
+      </div>
+    );
+  };
+
+  const popupBody = () => {
+    return (
+      <div className={clsx(s._PopupBody)}>
+        <Typography variant="body-md" className="gray-4">
+          Hapus {productName} dari Keranjang Belanja?
+        </Typography>
+      </div>
+    );
+  };
+
+  const popupFoot = () => {
+    return (
+      <div className={clsx(s._PopupFoot)}>
+        <button
+          className={clsx("button-secondary")}
+          onClick={() => setIsPopupOpen(false)}
+        >
+          Batal
+        </button>
+        <button className={clsx("button-1")} onClick={handleOnClickDeleteItem}>
+          Hapus
+        </button>
+      </div>
+    );
+  };
 
   return (
     <div className={clsx(s._Wrapper)}>
@@ -117,7 +166,7 @@ const CartItem = ({
             height={19}
             width={17}
             className={clsx("red-1")}
-            onClick={handleOnClickDeleteItem}
+            onClick={() => setIsPopupOpen(true)}
           />
           <button onClick={handleDecrementQuantity}>-</button>
           <input
@@ -131,6 +180,13 @@ const CartItem = ({
           </Typography>
         </div>
       </div>
+      <PopupContainer
+        headElement={popupHead()}
+        bodyElement={popupBody()}
+        footElement={popupFoot()}
+        isOpen={isPopupOpen}
+        className={s._PopupWrapper}
+      />
     </div>
   );
 };

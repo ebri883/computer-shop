@@ -67,6 +67,21 @@ const CheckoutTotalPrice = ({
               </Typography>
               <Typography variant="body-sm" className={clsx("gray-4")}>
                 {item.produkQuantity} X Rp{" "}
+                {(
+                  (item.productPrice -
+                    item.productPrice / item.productSalePercent) *
+                  item.produkQuantity
+                )
+                  .toLocaleString()
+                  .split(".")[0]
+                  .replaceAll(",", ".")}
+              </Typography>
+              <Typography
+                variant="body-sm"
+                style={{ textDecoration: "line-through" }}
+                className={clsx("gray-4")}
+              >
+                Rp{" "}
                 {(item.productPrice * item.produkQuantity)
                   .toLocaleString()
                   .split(".")[0]

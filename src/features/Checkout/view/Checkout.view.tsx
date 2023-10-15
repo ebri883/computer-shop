@@ -77,6 +77,7 @@ const Checkout = () => {
               userCityAddress={userData.userCityAddress}
               userStateAddress={userData.userStateAddress}
               userPostCode={userData.userPostCode}
+              currentShippingMethod={selectedShippingMethod.shippingMethodSlug}
               onSubmitFormAddress={handleOnSubmitFormAddress}
               onChangeShippingMethod={handleOnChangeShippingMethod}
             />

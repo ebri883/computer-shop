@@ -26,6 +26,7 @@ export interface ICheckoutFillDataProps
     | "userStateAddress"
     | "userPostCode"
   > {
+  currentShippingMethod: string;
   onSubmitFormAddress: (e: FormEvent<HTMLFormElement>) => void;
   onChangeShippingMethod: (shippingItemData: IShippingMethod) => void;
 }
@@ -39,6 +40,7 @@ const CheckoutFillData = ({
   userCityAddress,
   userStateAddress,
   userPostCode,
+  currentShippingMethod,
   onSubmitFormAddress,
   onChangeShippingMethod,
 }: ICheckoutFillDataProps) => {
@@ -267,10 +269,7 @@ const CheckoutFillData = ({
                 value={item.shippingMethodSlug}
                 id={item.shippingMethodSlug}
                 onChange={() => handleOnChangeShippingMethod(item)}
-                checked={
-                  item.shippingMethodName ===
-                  jasaPengirimanData[0].shippingMethodName
-                }
+                checked={item.shippingMethodSlug === currentShippingMethod}
               />
               <div className={clsx(s._RadioChecked)}>
                 <svg width={20} height={20} viewBox="0 0 512 512">

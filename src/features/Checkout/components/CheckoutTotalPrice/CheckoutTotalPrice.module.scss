@@ -35,8 +35,15 @@
 
       ._TextWrapper {
         display: flex;
-        flex-direction: column;
-        gap: 8px;
+        flex-wrap: wrap;
+        flex-direction: row;
+        gap: 8px 30px;
+
+        p {
+          &:nth-child(1) {
+            width: 100%;
+          }
+        }
       }
     }
   }
