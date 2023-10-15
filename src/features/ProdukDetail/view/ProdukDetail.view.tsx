@@ -14,6 +14,10 @@ import SectionUsp from "@/components/organisms/SectionUsp";
 import HomepageHighlightProduk from "@/features/Homepage/components/HomepageHighlightProduk";
 import useGenerateRandomProduct from "@/hooks/useGenerateRandomProduct.hook";
 import ProdukDetailInfo from "../components/ProdukDetailInfo";
+import PopupContainer from "@/components/molecules/PopupContainer";
+import { Typography } from "@/components/atoms/Typography";
+import { Icon } from "@/components/atoms/Icon";
+import Image from "next/image";
 
 const arrBreadcrumbItem: IBreadcrumbItemProps[] = [
   { breadcrumbTitle: "Home", breadcrumbUrl: PATHS.homepage },
@@ -64,6 +68,7 @@ const ProdukDetail = () => {
         />
         <ProdukHighLightInfo
           className={s._ProductHighlightInfo}
+          productPicture={currentProductData?.productPicture || ""}
           productSlug={currentProductData?.productSlug || ""}
           productName={currentProductData?.productName || ""}
           productPrice={currentProductData?.productPrice || 0}

@@ -76,7 +76,9 @@
             label {
               cursor: pointer;
 
-              display: inline;
+              display: flex;
+              align-items: center;
+              gap: 8px;
             }
           }
         }

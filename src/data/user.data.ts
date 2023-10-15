@@ -6,7 +6,7 @@ export const currentDummyUser: IUser = {
   userPhoneNumber: "081232425",
   userAddress: "RT01 / RW02, Banguntapan",
   userVillageAddress: "Pelem",
-  userDistrictAddress: "Banguntapan",
+  userDistrictAddress: "Baturetno, Banguntapan",
   userCityAddress: "Bantul Regency",
   userStateAddress: "Special Region of Yogyakarta",
   userPostCode: "55197",

@@ -107,4 +107,57 @@
       }
     }
   }
+
+  ._PopupWrapper {
+    ._PopupHead,
+    ._PopupBody ._OrderItem,
+    ._PopupFoot {
+      width: 690px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+
+      ._Close {
+        cursor: pointer;
+      }
+    }
+
+    ._PopupBody {
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        ._InputGroup {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          gap: 16px;
+
+          * {
+            @include t.body-md;
+
+            color: v.$gray-4;
+
+            outline: none;
+          }
+
+          :not(label) {
+            width: 418px;
+
+            border: 1px solid rgba($color: v.$gray-3, $alpha: 0.5);
+
+            padding: 8px;
+          }
+        }
+      }
+    }
+
+    ._PopupFoot {
+      justify-content: flex-end;
+    }
+  }
 }
