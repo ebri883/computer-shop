@@ -1,0 +1,84 @@
+@use "/styles/abstracts//variables" as v;
+@use "/styles/abstracts//typo-mixins" as t;
+
+._Wrapper {
+  > div {
+    padding-block: 28px 96px;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+
+    h1 {
+      width: 100%;
+    }
+
+    ._CheckoutForm {
+      width: calc(100% - 570px - 32px);
+
+      > div {
+        &:nth-child(1) {
+          margin-bottom: 32px;
+        }
+
+        &:nth-child(2) {
+          margin-bottom: 16px;
+        }
+      }
+    }
+
+    ._TotalPrice {
+      width: 570px;
+    }
+  }
+
+  ._PopupWrapper {
+    ._PopupHead,
+    ._PopupBody,
+    ._PopupFoot {
+      width: 626px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+
+      ._Close {
+        cursor: pointer;
+      }
+    }
+
+    ._PopupBody {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+
+      ._BodyItem {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        ._IconWrapper {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+
+          cursor: pointer;
+        }
+      }
+    }
+
+    ._PopupFoot {
+      flex-direction: column;
+      gap: 14px;
+
+      ._ContactWrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 40px;
+      }
+    }
+  }
+}

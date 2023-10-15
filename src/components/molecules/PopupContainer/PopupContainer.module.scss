@@ -1,0 +1,65 @@
+@use "/styles/abstracts/variables" as v;
+
+._Wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100dvw;
+  height: 100dvh;
+
+  z-index: 100;
+
+  transition: 0.3s;
+
+  opacity: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &._IsVisible {
+    opacity: 1;
+  }
+
+  ._Overlay {
+    width: 100dvw;
+    height: 100dvh;
+
+    background-color: rgba($color: v.$gray-4, $alpha: 0.75);
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    z-index: -1;
+  }
+
+  ._PopupCard {
+    width: fit-content;
+    height: fit-content;
+
+    box-shadow: 0 0 20px rgba(v.$gray-3, 0.5);
+
+    padding: 30px 32px;
+
+    background-color: v.$white;
+
+    display: flex;
+    flex-direction: column;
+
+    ._PopupHead {
+      margin-bottom: 24px;
+    }
+
+    ._PopupBody {
+      padding-block: 24px;
+
+      border-block: 1px solid rgba($color: v.$gray-4, $alpha: 0.5);
+    }
+
+    ._PopupFoot {
+      margin-top: 24px;
+    }
+  }
+}

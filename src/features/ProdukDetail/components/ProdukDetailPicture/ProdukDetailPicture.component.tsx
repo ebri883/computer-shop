@@ -10,11 +10,12 @@ import { swiperModules } from "@/components/molecules/SliderContainer/SliderCont
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 
 export interface IProdukDetailPictureProps
-  extends Pick<IProduk, "productPicture" | "productGallery"> {}
+  extends Pick<IProduk, "productPicture" | "productGallery" | "productSlug"> {}
 
 const ProdukDetailPicture = ({
   productPicture,
   productGallery,
+  productSlug,
 }: IProdukDetailPictureProps) => {
   const [sliderEl, setSliderEl] = useState<Swiper>();
 
@@ -34,8 +35,8 @@ const ProdukDetailPicture = ({
               src={productPicture}
               width={570}
               height={570}
-              loading="lazy"
-              alt="product-picture"
+              alt={"productThubnail"}
+              priority
             />
           </SwiperSlide>
           {productGallery?.map((item, key) => (
@@ -63,7 +64,7 @@ const ProdukDetailPicture = ({
               width={570}
               height={570}
               loading="lazy"
-              alt="product-picture"
+              alt={`product-gallery-0`}
             />
           </SwiperSlide>
           {productGallery?.map((item, key) => (

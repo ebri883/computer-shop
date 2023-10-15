@@ -118,13 +118,14 @@
 
   transition: 0.3s;
 
-  border: none;
+  border: 1px solid v.$red-1;
   outline: none;
 
   cursor: pointer;
 
   &:hover {
     background-color: v.$red-2;
+    border-color: v.$red-1;
   }
 }
 

@@ -66,6 +66,12 @@ const IcNounSupport = dynamic(() => import("./IcNounSupport.component"), {
 const IcNounPayment = dynamic(() => import("./IcNounPayment.component"), {
   ssr: false,
 });
+const IcFeatherTrash = dynamic(() => import("./IcFeatherTrash.component"), {
+  ssr: false,
+});
+const IcIonicIosClose = dynamic(() => import("./IcIonicIosClose.component"), {
+  ssr: false,
+});
 
 const Icons = {
   IcAwesomeWhatsapp: <IcAwesomeWhatsapp />,
@@ -85,6 +91,8 @@ const Icons = {
   IcNounBox: <IcNounBox />,
   IcNounSupport: <IcNounSupport />,
   IcNounPayment: <IcNounPayment />,
+  IcFeatherTrash: <IcFeatherTrash />,
+  IcIonicIosClose: <IcIonicIosClose />,
 };
 
 export default Icons;

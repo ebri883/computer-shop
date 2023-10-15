@@ -1,0 +1,40 @@
+@use "/styles/abstracts//variables" as v;
+@use "/styles/abstracts//typo-mixins" as t;
+
+._Wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+
+  ._ProgressItem {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+
+    cursor: pointer;
+
+    ._ProgressTrack {
+      position: relative;
+
+      width: 100%;
+      height: 8px;
+
+      background-color: v.$white;
+
+      ._ProgressBar {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        background-color: #0066ff;
+
+        transition: 0.3s;
+      }
+    }
+  }
+}

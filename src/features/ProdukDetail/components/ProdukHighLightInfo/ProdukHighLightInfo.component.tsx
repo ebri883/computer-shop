@@ -5,9 +5,22 @@ import { IProduk } from "@/interfaces/produk.interface";
 import { Typography } from "@/components/atoms/Typography";
 import useGetProductFinalPrice from "@/hooks/useGetProductFinalPrice.hook";
 import SalePrice from "@/components/molecules/SalePrice";
+import useUpdateCartData from "@/hooks/useUpdateCartData.hook";
+import Image from "next/image";
+import { Icon } from "@/components/atoms/Icon";
+import PopupContainer from "@/components/molecules/PopupContainer";
+import { useRouter } from "next/navigation";
+import { PATHS } from "@/constants/PATHS";
 
 export interface IProdukHighLightInfoProps
-  extends Pick<IProduk, "productName" | "productPrice" | "productSalePercent"> {
+  extends Pick<
+    IProduk,
+    | "productName"
+    | "productPrice"
+    | "productSalePercent"
+    | "productSlug"
+    | "productPicture"
+  > {
   className?: string;
 }
 
@@ -15,15 +28,25 @@ const ProdukHighLightInfo = ({
   productName,
   productPrice,
   productSalePercent,
+  productSlug,
+  productPicture,
   className,
 }: IProdukHighLightInfoProps) => {
   const [quantity, setQuantity] = useState(1);
+  const { addProductToCart } = useUpdateCartData();
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const { push } = useRouter();
 
-  const { actualDisplayPrice, finalPrice, finalDisplayPrice, isSale } =
-    useGetProductFinalPrice({
-      productPrice: productPrice,
-      productSalePercent: productSalePercent,
-    });
+  const {
+    actualDisplayPrice,
+    actualProductPrice,
+    finalPrice,
+    finalDisplayPrice,
+    isSale,
+  } = useGetProductFinalPrice({
+    productPrice: productPrice,
+    productSalePercent: productSalePercent,
+  });
 
   const handleIncrementQuantity = () => {
     setQuantity((prev) => prev + 1);
@@ -42,10 +65,95 @@ const ProdukHighLightInfo = ({
     setQuantity(inputedValue);
   };
 
+  const handleOnClickAddToCart = () => {
+    addProductToCart({ productSlug, produkQuantity: quantity });
+    setIsPopupOpen(true);
+  };
+
+  const handleOnClickGoToCart = () => {
+    setIsPopupOpen(false);
+    push(PATHS.cart);
+  };
+
+  const handleOnClickGoToCheckout = async () => {
+    await addProductToCart({ productSlug, produkQuantity: quantity });
+    setIsPopupOpen(false);
+    push(PATHS.checkout);
+  };
+
   const displayedTotalPrice = (finalPrice * quantity)
     .toLocaleString()
     .split(".")[0]
     .replaceAll(",", ".");
+
+  const popupHead = () => {
+    return (
+      <div className={clsx(s._PopupHead)}>
+        <Typography
+          variant="body-xl"
+          fontWeight={700}
+          className={clsx("gray-4")}
+        >
+          Produk Berhasil Ditambahkan
+        </Typography>
+        <Icon
+          iconName="IcIonicIosClose"
+          size={14}
+          onClick={() => setIsPopupOpen(false)}
+          className={s._Close}
+        />
+      </div>
+    );
+  };
+
+  const popupBody = () => {
+    return (
+      <div className={clsx(s._PopupBody)}>
+        <div className={clsx(s._OrderItem)}>
+          <Image
+            src={productPicture || ""}
+            alt={productSlug || ""}
+            width={100}
+            height={100}
+            loading="lazy"
+          />
+          <div className={clsx(s._TextWrapper)}>
+            <Typography variant="body-sm" className={clsx("gray-4")}>
+              {productName}
+            </Typography>
+            <Typography variant="body-sm" className={clsx("gray-4", s._Price)}>
+              {quantity} X Rp {displayedTotalPrice}{" "}
+              {isSale && (
+                <Typography component="span">
+                  Rp
+                  {(actualProductPrice * quantity)
+                    .toLocaleString()
+                    .split(".")[0]
+                    .replaceAll(",", ".")}
+                </Typography>
+              )}
+            </Typography>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const popupFoot = () => {
+    return (
+      <div className={clsx(s._PopupFoot)}>
+        <button
+          className={clsx("button-secondary")}
+          onClick={() => setIsPopupOpen(false)}
+        >
+          Kembali belanja
+        </button>
+        <button className={clsx("button-1")} onClick={handleOnClickGoToCart}>
+          Lanjut ke keranjang
+        </button>
+      </div>
+    );
+  };
 
   return (
     <div className={clsx(s._Wrapper, className)}>
@@ -107,9 +215,23 @@ const ProdukHighLightInfo = ({
         </div>
       </div>
       <div className={clsx(s._Container, s._Buttons)}>
-        <button className="button-1">Tambah ke keranjang</button>
-        <button className="button-secondary">Beli sekarang</button>
+        <button className="button-1" onClick={handleOnClickAddToCart}>
+          Tambah ke keranjang
+        </button>
+        <button
+          className="button-secondary"
+          onClick={handleOnClickGoToCheckout}
+        >
+          Beli sekarang
+        </button>
       </div>
+      <PopupContainer
+        headElement={popupHead()}
+        bodyElement={popupBody()}
+        footElement={popupFoot()}
+        isOpen={isPopupOpen}
+        className={clsx(s._PopupWrapper)}
+      />
     </div>
   );
 };

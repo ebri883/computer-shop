@@ -1,0 +1,88 @@
+@use "/styles/abstracts/variables" as v;
+@use "/styles/abstracts/typo-mixins" as t;
+
+._Wrapper {
+  ._CardPayment {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    background-color: v.$white;
+
+    padding: 30px 32px;
+
+    ._PaymentWrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+
+      ._PaymentGroup {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        border-bottom: 1px solid rgba($color: v.$gray-3, $alpha: 0.25);
+
+        padding-bottom: 14px;
+
+        ._InputWrapper {
+          display: flex;
+          flex-direction: column;
+
+          ._InputGroup {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            position: relative;
+
+            input {
+              margin: 0;
+
+              width: 18px;
+              height: 18px;
+
+              appearance: none;
+
+              position: absolute;
+
+              z-index: 1;
+
+              cursor: pointer;
+            }
+
+            ._RadioChecked,
+            ._RadioUnchecked {
+              display: flex;
+
+              transition: 0.3s;
+
+              ._Dot {
+                fill: v.$red-2;
+              }
+            }
+
+            ._RadioChecked {
+              opacity: 0;
+
+              position: absolute;
+              left: 0;
+            }
+
+            input:checked ~ ._RadioChecked {
+              opacity: 1;
+            }
+
+            label {
+              cursor: pointer;
+
+              display: flex;
+              align-items: center;
+              gap: 8px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

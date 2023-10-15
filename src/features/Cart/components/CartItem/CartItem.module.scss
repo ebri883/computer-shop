@@ -1,0 +1,160 @@
+@use "/styles//abstracts/variables" as v;
+@use "/styles//abstracts/typo-mixins" as t;
+
+._Wrapper {
+  display: flex;
+  align-items: center;
+
+  background-color: v.$white;
+
+  padding: 32px;
+
+  box-shadow: 0 0 20px rgba($color: v.$gray-4, $alpha: 0.05);
+
+  ._Image {
+    margin-right: 16px;
+
+    border: 1px solid rgba($color: v.$gray-4, $alpha: 0.5);
+  }
+
+  ._ProdukInfo {
+    margin-right: 32px;
+
+    flex-grow: 1;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 30px;
+
+    p,
+    a {
+      &:first-child {
+        width: 100%;
+      }
+
+      &:not(:first-child) {
+        width: fit-content;
+
+        &._SalePrice {
+          text-decoration: line-through;
+        }
+      }
+    }
+  }
+
+  ._Quantity {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    ._InputWrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      > span {
+        margin-right: 8px;
+      }
+
+      button,
+      input {
+        @include t.body-md;
+
+        padding: 8px 12px;
+
+        outline: none;
+        border: 1px solid #57575774;
+
+        min-width: 42px;
+      }
+
+      button,
+      span {
+        cursor: pointer;
+      }
+
+      input {
+        appearance: none;
+
+        text-align: center;
+
+        width: 102px;
+
+        &[type="number"] {
+          -moz-appearance: textfield;
+          appearance: textfield;
+
+          -webkit-appearance: none;
+          margin: 0;
+
+          &::-webkit-inner-spin-button,
+          &::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
+        }
+      }
+
+      ._TotalPrice {
+        text-align: right;
+
+        margin-left: 32px;
+
+        width: 130px;
+      }
+    }
+  }
+
+  ._PopupWrapper {
+    ._PopupHead,
+    ._PopupBody ._OrderItem,
+    ._PopupFoot {
+      width: 690px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+
+      ._Close {
+        cursor: pointer;
+      }
+    }
+
+    ._PopupBody {
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        ._InputGroup {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          gap: 16px;
+
+          * {
+            @include t.body-md;
+
+            color: v.$gray-4;
+
+            outline: none;
+          }
+
+          :not(label) {
+            width: 418px;
+
+            border: 1px solid rgba($color: v.$gray-3, $alpha: 0.5);
+
+            padding: 8px;
+          }
+        }
+      }
+    }
+
+    ._PopupFoot {
+      justify-content: flex-end;
+    }
+  }
+}

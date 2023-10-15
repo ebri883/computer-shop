@@ -33,7 +33,11 @@ const arrSortItemData: IFilterItem[] = [
   },
   {
     label: "Terbaru",
-    value: "ascDate",
+    value: "descDate",
+  },
+  {
+    label: "Terlaris",
+    value: "descSaleCount",
   },
 ];
 

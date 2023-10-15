@@ -1,0 +1,30 @@
+@use "/styles/abstracts/variables" as v;
+
+._Wrapper {
+  padding: 32px 16px;
+
+  box-shadow: 0 0 20px rgba($color: v.$gray-4, $alpha: 0.25);
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 24px 16px;
+
+  background-color: v.$white;
+
+  height: fit-content;
+
+  p {
+    &._TotalPrice {
+      margin-right: 8px;
+
+      text-align: right;
+
+      flex-grow: 1;
+    }
+  }
+
+  button {
+    width: 100%;
+  }
+}
