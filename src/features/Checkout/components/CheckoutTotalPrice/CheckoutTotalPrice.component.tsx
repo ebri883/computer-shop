@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import s from "./CheckoutTotalPrice.module.scss";
 import clsx from "clsx";
 import { Typography } from "@/components/atoms/Typography";
 import Image from "next/image";
 import { IShippingMethod } from "@/interfaces/shippingMethod.interface";
-import { IUser, IUserCartData } from "@/interfaces/user.interface";
+import { IUserCartData } from "@/interfaces/user.interface";
+import { TCheckoutStep } from "../../view/Checkout.view";
+import PopupContainer from "@/components/molecules/PopupContainer";
+import { Icon } from "@/components/atoms/Icon";
+import IconBox from "@/components/molecules/IconBox";
 
 interface ICheckoutTotalPriceProps
   extends Pick<IShippingMethod, "shippingMethodPrice">,
     Pick<IUserCartData, "userCartTotal" | "userCartProduct"> {
+  currentStep: TCheckoutStep;
   className?: string;
   onClickTotalButton: () => void;
 }
@@ -17,8 +22,9 @@ const CheckoutTotalPrice = ({
   shippingMethodPrice,
   userCartTotal,
   userCartProduct,
-  onClickTotalButton,
+  currentStep,
   className,
+  onClickTotalButton,
 }: ICheckoutTotalPriceProps) => {
   const handleOnClickTotalButton = () => {
     if (onClickTotalButton) {
@@ -69,7 +75,7 @@ const CheckoutTotalPrice = ({
                 {item.produkQuantity} X Rp{" "}
                 {(
                   (item.productPrice -
-                    item.productPrice / item.productSalePercent) *
+                    item.productPrice * (item.productSalePercent / 100)) *
                   item.produkQuantity
                 )
                   .toLocaleString()
@@ -111,7 +117,11 @@ const CheckoutTotalPrice = ({
           <span>Rp {displayedTotalPrice}</span>
         </Typography>
         <button className={clsx("button-1")} onClick={handleOnClickTotalButton}>
-          Lanjut ke pembayaran
+          {currentStep === "address"
+            ? "Lanjut ke pembayaran"
+            : currentStep === "payment"
+            ? "Pilih pembayaran"
+            : ""}
         </button>
       </div>
     </div>

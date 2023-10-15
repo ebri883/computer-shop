@@ -1,11 +1,27 @@
 import clsx from "clsx";
-import React from "react";
+import React, { useState } from "react";
 import s from "./CheckoutPayment.module.scss";
 import { Typography } from "@/components/atoms/Typography";
 import Image from "next/image";
 import { paymentMethodData } from "@/data/paymentMethod.data";
+import { IPaymentMethodGroupItem } from "@/interfaces/paymentMethod.interface";
+import { Icon } from "@/components/atoms/Icon";
+import IconBox from "@/components/molecules/IconBox";
+import PopupContainer from "@/components/molecules/PopupContainer";
 
-const CheckoutPayment = () => {
+interface ICheckoutPayment extends Pick<IPaymentMethodGroupItem, "slug"> {
+  onChangePaymentMethod: (paymentItem: IPaymentMethodGroupItem) => void;
+}
+
+const CheckoutPayment = ({ slug, onChangePaymentMethod }: ICheckoutPayment) => {
+  const handleOnChangePaymentMethod = (
+    paymentItem: IPaymentMethodGroupItem
+  ) => {
+    if (onChangePaymentMethod) {
+      onChangePaymentMethod(paymentItem);
+    }
+  };
+
   return (
     <div className={clsx(s._Wrapper)}>
       <div className={clsx(s._CardPayment)}>
@@ -33,6 +49,8 @@ const CheckoutPayment = () => {
                       type="radio"
                       name="paymentmethod"
                       id={paymentItem.slug}
+                      checked={paymentItem.slug === slug}
+                      onChange={() => handleOnChangePaymentMethod(paymentItem)}
                     />
                     <div className={clsx(s._RadioChecked)}>
                       <svg width={20} height={20} viewBox="0 0 512 512">
@@ -68,7 +86,6 @@ const CheckoutPayment = () => {
           ))}
         </div>
       </div>
-      <div className=""></div>
     </div>
   );
 };

@@ -31,4 +31,54 @@
       width: 570px;
     }
   }
+
+  ._PopupWrapper {
+    ._PopupHead,
+    ._PopupBody,
+    ._PopupFoot {
+      width: 626px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+
+      ._Close {
+        cursor: pointer;
+      }
+    }
+
+    ._PopupBody {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+
+      ._BodyItem {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        ._IconWrapper {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+
+          cursor: pointer;
+        }
+      }
+    }
+
+    ._PopupFoot {
+      flex-direction: column;
+      gap: 14px;
+
+      ._ContactWrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 40px;
+      }
+    }
+  }
 }
